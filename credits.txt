@@ -1,0 +1,5 @@
+This demo uses the following art:
+
+- 8bit ninja sprites by LD, http://luciddesignart.tk/
+
+- Silkscreen font by Jason Kottke, http://www.kottke.org/plus/type/silkscreen/index.html
