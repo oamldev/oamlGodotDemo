@@ -1,4 +1,4 @@
-extends StreamPlayer
+extends Node
 
 var oaml
 var enableMusic = true
@@ -26,3 +26,4 @@ func isPlaying():
 
 func setMainLoopCondition(value):
 	oaml.SetMainLoopCondition(value)
+

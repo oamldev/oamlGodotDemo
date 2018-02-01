@@ -1,0 +1,48 @@
+[application]
+
+config/name = "oamlGodotDemo"
+icon = "res://icon.png"
+run/main_scene = "res://level.scn"
+
+[autoload]
+
+music = "*res://music.scn"
+
+[display]
+
+stretch/aspect = "ignore"
+stretch/mode = "viewport"
+window/height = 512
+window/resizable = true
+window/width = 1024
+
+[image_loader]
+
+filter = false
+gen_mipmaps = false
+
+[importer_defaults]
+
+texture = {
+"flags/filter": false,
+"flags/mipmaps": false
+}
+
+[input]
+
+btn_attack = [ InputEvent(KEY,90), InputEvent(KEY,74) ]
+btn_dash = [ InputEvent(KEY,88), InputEvent(KEY,75), InputEvent(KEY,16777238) ]
+btn_special = [ InputEvent(KEY,67), InputEvent(KEY,76) ]
+ui_down = [ InputEvent(KEY,16777234), InputEvent(JBUTTON,13), InputEvent(KEY,83) ]
+ui_left = [ InputEvent(KEY,16777231), InputEvent(JBUTTON,14), InputEvent(KEY,65) ]
+ui_right = [ InputEvent(KEY,16777233), InputEvent(JBUTTON,15), InputEvent(KEY,68) ]
+ui_up = [ InputEvent(KEY,16777232), InputEvent(JBUTTON,12), InputEvent(KEY,87) ]
+
+[physics]
+
+2d/thread_model = 1
+
+[rendering]
+
+2d/use_pixel_snap = true
+

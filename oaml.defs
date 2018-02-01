@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<track type="music">
-    <name>Theme</name>
-    <volume>1</volume>
-    <fadeIn>2000</fadeIn>
-    <fadeOut>1000</fadeOut>
-    <audio>
-        <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
-        <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
-        <filename layer="Melody">music/Theme_A1_Melody.ogg</filename>
-        <type>2</type>
+<project>
+    <track type="music">
+        <name>Theme</name>
         <volume>1</volume>
-        <bpm>96</bpm>
-        <beatsPerBar>3</beatsPerBar>
-        <bars>4</bars>
-        <condId>2</condId>
-        <condType>0</condType>
-        <condValue>0</condValue>
-    </audio>
-    <audio>
-        <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
-        <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
-        <filename layer="Melody">music/Theme_A2_Melody.ogg</filename>
-        <type>2</type>
-        <volume>1</volume>
-        <bpm>96</bpm>
-        <beatsPerBar>3</beatsPerBar>
-        <bars>4</bars>
-        <condId>2</condId>
-        <condType>0</condType>
-        <condValue>0</condValue>
-    </audio>
-    <audio>
-        <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
-        <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
-        <filename layer="Melody">music/Theme_B1_Melody.ogg</filename>
-        <type>2</type>
-        <volume>1</volume>
-        <bpm>96</bpm>
-        <beatsPerBar>3</beatsPerBar>
-        <bars>4</bars>
-        <condId>2</condId>
-        <condType>0</condType>
-        <condValue>1</condValue>
-    </audio>
-    <audio>
-        <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
-        <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
-        <filename layer="Melody">music/Theme_B2_Melody.ogg</filename>
-        <type>2</type>
-        <volume>1</volume>
-        <bpm>96</bpm>
-        <beatsPerBar>3</beatsPerBar>
-        <bars>4</bars>
-        <condId>2</condId>
-        <condType>0</condType>
-        <condValue>1</condValue>
-    </audio>
-    <audio>
-        <filename layer="Arp">music/Theme_C1_Arp.ogg</filename>
-        <filename layer="Comp">music/Theme_C1_Comp.ogg</filename>
-        <filename layer="Melody">music/Theme_C1_Melody.ogg</filename>
-        <type>2</type>
-        <volume>1</volume>
-        <bpm>96</bpm>
-        <beatsPerBar>3</beatsPerBar>
-        <bars>4</bars>
-        <condId>2</condId>
-        <condType>0</condType>
-        <condValue>2</condValue>
-    </audio>
-    <audio>
-        <filename layer="Arp">music/Theme_C2_Arp.ogg</filename>
-        <filename layer="Comp">music/Theme_C2_Comp.ogg</filename>
-        <filename layer="Melody">music/Theme_C2_Melody.ogg</filename>
-        <type>2</type>
-        <volume>1</volume>
-        <bpm>96</bpm>
-        <beatsPerBar>3</beatsPerBar>
-        <bars>4</bars>
-        <condId>2</condId>
-        <condType>0</condType>
-        <condValue>2</condValue>
-    </audio>
-</track>
+        <fadeIn>2000</fadeIn>
+        <fadeOut>1000</fadeOut>
+        <audio>
+            <name>Theme_AB_Arp</name>
+            <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
+            <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
+            <filename layer="Melody">music/Theme_A1_Melody.ogg</filename>
+            <type>2</type>
+            <volume>1</volume>
+            <bpm>96</bpm>
+            <beatsPerBar>3</beatsPerBar>
+            <bars>4</bars>
+            <condId>2</condId>
+        </audio>
+        <audio>
+            <name>audio1</name>
+            <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
+            <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
+            <filename layer="Melody">music/Theme_A2_Melody.ogg</filename>
+            <type>2</type>
+            <volume>1</volume>
+            <bpm>96</bpm>
+            <beatsPerBar>3</beatsPerBar>
+            <bars>4</bars>
+            <condId>2</condId>
+        </audio>
+        <audio>
+            <name>audio2</name>
+            <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
+            <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
+            <filename layer="Melody">music/Theme_B1_Melody.ogg</filename>
+            <type>2</type>
+            <volume>1</volume>
+            <bpm>96</bpm>
+            <beatsPerBar>3</beatsPerBar>
+            <bars>4</bars>
+            <condId>2</condId>
+            <condValue>1</condValue>
+        </audio>
+        <audio>
+            <name>audio3</name>
+            <filename layer="Arp">music/Theme_AB_Arp.ogg</filename>
+            <filename layer="Comp">music/Theme_AB_Comp.ogg</filename>
+            <filename layer="Melody">music/Theme_B2_Melody.ogg</filename>
+            <type>2</type>
+            <volume>1</volume>
+            <bpm>96</bpm>
+            <beatsPerBar>3</beatsPerBar>
+            <bars>4</bars>
+            <condId>2</condId>
+            <condValue>1</condValue>
+        </audio>
+        <audio>
+            <name>Theme_C1_Arp</name>
+            <filename layer="Arp">music/Theme_C1_Arp.ogg</filename>
+            <filename layer="Comp">music/Theme_C1_Comp.ogg</filename>
+            <filename layer="Melody">music/Theme_C1_Melody.ogg</filename>
+            <type>2</type>
+            <volume>1</volume>
+            <bpm>96</bpm>
+            <beatsPerBar>3</beatsPerBar>
+            <bars>4</bars>
+            <condId>2</condId>
+            <condValue>2</condValue>
+        </audio>
+        <audio>
+            <name>Theme_C2_Arp</name>
+            <filename layer="Arp">music/Theme_C2_Arp.ogg</filename>
+            <filename layer="Comp">music/Theme_C2_Comp.ogg</filename>
+            <filename layer="Melody">music/Theme_C2_Melody.ogg</filename>
+            <type>2</type>
+            <volume>1</volume>
+            <bpm>96</bpm>
+            <beatsPerBar>3</beatsPerBar>
+            <bars>4</bars>
+            <condId>2</condId>
+            <condValue>2</condValue>
+        </audio>
+    </track>
+</project>

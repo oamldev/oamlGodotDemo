@@ -15,3 +15,4 @@ func _process(delta):
     var ratio = width / height
     var zoom = (REF_HEIGHT * ratio / width) * self.zoom
     set_zoom( Vector2(zoom, zoom) )
+

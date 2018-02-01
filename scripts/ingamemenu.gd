@@ -23,7 +23,7 @@ func _ready():
 
 func enable(option):
 	set_process_input(option)
-	set_fixed_process(option)
+	set_physics_process(option)
 	if (option):
 		get_node("..").show()
 	else:
@@ -37,7 +37,7 @@ func _input(event):
 
 	if (down):
 		var node = options[selected]
-		node.set_opacity(1)
+		node.modulate.a = 1
 		status = 0
 		count = 0
 		selected+= 1
@@ -46,7 +46,7 @@ func _input(event):
 
 	if (up):
 		var node = options[selected]
-		node.set_opacity(1)
+		node.modulate.a = 1
 		status = 0
 		count = 0
 		selected-= 1
@@ -63,7 +63,7 @@ func _input(event):
 			get_tree().quit()
 
 
-func _fixed_process(delta):
+func _physics_process(delta):
 	var node = options[selected]
 	if (status == 0):
 		value-= 0.02
@@ -74,5 +74,6 @@ func _fixed_process(delta):
 		if (value >= 1.0):
 			status = 0
 
-	node.set_opacity(value)
+	node.modulate.a = value
+
 

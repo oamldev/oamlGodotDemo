@@ -20,22 +20,12 @@ func resizeWindowed():
 
 func resize():
 	var fullscreen = false
-	if (Globals.has("fullscreen")):
-		fullscreen = Globals.get("fullscreen")
-
-	if (OS.is_window_fullscreen() != fullscreen):
-		OS.set_window_fullscreen(fullscreen)
-
-	if (not fullscreen):
-		resizeWindowed()
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	resizeWindowed()
 
 func _ready():
 	get_tree().connect("screen_resized", self, "resize")
 	if (music.isPlaying() == false):
 		music.playTrack("Theme")
 
-	if (Globals.has("Init") == false):
-		Globals.set("Init", 1)
-		resize()
+	resize()
+

@@ -4,6 +4,7 @@ const SCALE = 4
 const GRAVITY = 500.0*SCALE # Pixels/second
 const DAMAGE_THROWBACK = 8000*SCALE
 const VERTICAL_DAMAGE_THROWBACK = 6000*SCALE
+const FLOOR_NORMAL = Vector2(0, -1)
 
 # Angle in degrees towards either side that the player can consider "floor"
 const FLOOR_ANGLE_TOLERANCE = 40
@@ -38,6 +39,7 @@ var inMenu = false
 var manaPoints = 10
 var manaMax = 10
 
+var anim = "Idle"
 var velocity = Vector2()
 var on_air_time = 100
 var prevJump = false
@@ -70,14 +72,14 @@ func die():
 
 func _ready():
 	set_process_input(true)
-	set_fixed_process(true)
+	set_physics_process(true)
 
 func _input(event):
 	var cancel = event.is_action_pressed("ui_cancel")
 	if (cancel):
 		toggleMenu()
 
-func _fixed_process(delta):
+func _physics_process(delta):
 	statusText.set_text(music.getStatus())
 
 	if (inMenu):
@@ -104,19 +106,19 @@ func _fixed_process(delta):
 		jump = false
 		return
 
-	var force = Vector2(0, GRAVITY)
-	var stop = true
-	
+	velocity.y+= delta*GRAVITY
+	velocity = move_and_slide(velocity, FLOOR_NORMAL, 0.0, 8)
+
+	var target_speed = 0
 	if (walk_left):
-		if (velocity.x <= WALK_MIN_SPEED and velocity.x > -WALK_MAX_SPEED):
-			force.x -= WALK_FORCE
-			stop = false
-			facingright = false
-	elif (walk_right):
-		if (velocity.x >= -WALK_MIN_SPEED and velocity.x < WALK_MAX_SPEED):
-			force.x += WALK_FORCE
-			stop = false
-			facingright = true
+		target_speed+= -1
+		facingright = false
+	if (walk_right):
+		target_speed+= 1
+		facingright = true
+
+	target_speed*= WALK_FORCE
+	velocity.x = lerp(velocity.x, target_speed, 0.2)
 
 	var scale = sprite.get_scale()
 	if (facingright == true and scale.x == -1):
@@ -124,62 +126,8 @@ func _fixed_process(delta):
 	elif (facingright == false and scale.x == 1):
 		sprite.set_scale(Vector2(-1,1))
 
-	if (stop):
-		var vsign = sign(velocity.x)
-		var vlen = abs(velocity.x)
-		
-		if (hit_counter == 0):
-			vlen -= STOP_FORCE*delta
-		else:
-			vlen -= STOP_FORCE_HIT*delta
-		if (vlen < 0):
-			vlen = 0
-		
-		velocity.x = vlen*vsign
-	
-	# Integrate forces to velocity
-	velocity += force*delta
-	
-	# Integrate velocity into motion and move
-	var motion = velocity*delta
-	
-	# Move and consume motion
-	motion = move(motion)
-	
-	var floor_velocity = Vector2()
-	
-	if (is_colliding()):
-		# Ran against something, is it the floor? Get normal
-		var n = get_collision_normal()
-		
-		if (rad2deg(acos(n.dot(Vector2(0, -1)))) < FLOOR_ANGLE_TOLERANCE):
-			# If angle to the "up" vectors is < angle tolerance
-			# char is on floor
-			on_air_time = 0
-			floor_velocity = get_collider_velocity()
-		
-		if (on_air_time == 0 and force.x == 0 and get_travel().length() < SLIDE_STOP_MIN_TRAVEL and abs(velocity.x) < SLIDE_STOP_VELOCITY and get_collider_velocity() == Vector2()):
-			# Since this formula will always slide the character around, 
-			# a special case must be considered to to stop it from moving 
-			# if standing on an inclined floor. Conditions are:
-			# 1) Standing on floor (on_air_time == 0)
-			# 2) Did not move more than one pixel (get_travel().length() < SLIDE_STOP_MIN_TRAVEL)
-			# 3) Not moving horizontally (abs(velocity.x) < SLIDE_STOP_VELOCITY)
-			# 4) Collider is not moving
-			
-			revert_motion()
-			velocity.y = 0.0
-		else:
-			# For every other case of motion, our motion was interrupted.
-			# Try to complete the motion by "sliding" by the normal
-			motion = n.slide(motion)
-			velocity = n.slide(velocity)
-			# Then move again
-			move(motion)
-
-	if (floor_velocity != Vector2()):
-		# If floor moves, move with floor
-		move(floor_velocity*delta)
+	if (is_on_floor()):
+		on_air_time = 0
 
 	############
 	# Jump code
@@ -193,16 +141,14 @@ func _fixed_process(delta):
 		# Jump was triggered again before reaching floor, do a double jump
 		velocity.y = -JUMP_SPEED
 		doubleJump = true
-		samplePlayer.play("Jump")
-		animPlayer.play("Jump")
+#		samplePlayer.play("Jump")
 
 	if (on_air_time < JUMP_MAX_AIRBORNE_TIME and jump and not prevJump and not jumping):
 		# Jump must also be allowed to happen if the character left the floor a little bit ago.
 		# Makes controls more snappy.
 		velocity.y = -JUMP_SPEED
 		jumping = true
-		samplePlayer.play("Jump")
-		animPlayer.play("Jump")
+#		samplePlayer.play("Jump")
 
 	on_air_time += delta
 	prevLeft = walk_left
@@ -212,7 +158,7 @@ func _fixed_process(delta):
 	############
 	# Music code
 	#
-	var pos = get_pos()
+	var pos = get_position()
 	var pctComplete = pos.x / 900.0
 	if (pctComplete > 1.0):
 		pctComplete = 1.0
@@ -225,4 +171,17 @@ func _fixed_process(delta):
 		music.setMainLoopCondition(1) # Area2
 	else:
 		music.setMainLoopCondition(2) # Area3
+
+	if (alive == false):
+		anim = "Death"
+	elif (attacking):
+		anim = "Attack"
+	elif (jumping):
+		anim = "Jump"
+	elif (velocity.x < 0.1 or velocity.x > 0.1):
+		anim = "Walk"
+	else:
+		anim = "Idle"
+	if (animPlayer.get_current_animation() != anim):
+		animPlayer.play(anim)
 
