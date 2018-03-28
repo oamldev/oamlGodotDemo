@@ -80,7 +80,7 @@ func _input(event):
 		toggleMenu()
 
 func _physics_process(delta):
-	statusText.set_text(music.getStatus())
+	statusText.set_text(music.get_status())
 
 	if (inMenu):
 		return
@@ -163,14 +163,14 @@ func _physics_process(delta):
 	if (pctComplete > 1.0):
 		pctComplete = 1.0
 	var val = 0.1 + pctComplete * 1.5
-	music.setLayerGain("Arp", val)
+	music.set_layer_gain("Arp", val)
 
 	if (pos.x < 300.0):
-		music.setMainLoopCondition(0) # Area1
+		music.set_main_loop_condition(0) # Area1
 	elif (pos.x < 750.0):
-		music.setMainLoopCondition(1) # Area2
+		music.set_main_loop_condition(1) # Area2
 	else:
-		music.setMainLoopCondition(2) # Area3
+		music.set_main_loop_condition(2) # Area3
 
 	if (alive == false):
 		anim = "Death"
