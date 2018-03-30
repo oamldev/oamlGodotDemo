@@ -24,8 +24,8 @@ func resize():
 
 func _ready():
 	get_tree().connect("screen_resized", self, "resize")
-	if (music.isPlaying() == false):
-		music.playTrack("Theme")
+	if (music.is_playing() == false):
+		music.play_track("Theme")
 
 	resize()
 

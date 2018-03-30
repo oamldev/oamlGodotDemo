@@ -5,25 +5,25 @@ var enableMusic = true
 
 func _ready():
 	oaml = oamlGodotModule.new()
-	oaml.Init("oaml.defs")
+	oaml.init("oaml.defs")
 
-func playTrack(name):
+func play_track(name):
 	if (enableMusic == false):
 		return
-	oaml.PlayTrack(name)
+	oaml.play_track(name)
 
-func stopPlaying():
-	oaml.StopPlaying()
+func stop_playing():
+	oaml.stop_playing()
 
-func setLayerGain(layer, gain):
-	oaml.SetLayerGain(layer, gain)
+func set_layer_gain(layer, gain):
+	oaml.set_layer_gain(layer, gain)
 
-func getStatus():
-	return oaml.GetPlayingInfo()
+func get_status():
+	return oaml.get_playing_info()
 
-func isPlaying():
-	return oaml.IsPlaying()
+func is_playing():
+	return oaml.is_playing()
 
-func setMainLoopCondition(value):
-	oaml.SetMainLoopCondition(value)
+func set_main_loop_condition(value):
+	oaml.set_main_loop_condition(value)
 
