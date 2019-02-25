@@ -102,7 +102,6 @@ func _physics_process(delta):
 	var jump = Input.is_action_pressed("ui_up")
 
 	if (jump and insideDoor):
-		finishLevel()
 		jump = false
 		return
 
